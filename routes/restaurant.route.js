@@ -1,6 +1,5 @@
 const express = require("express");
 const { getAllRestaurant, getOneRestaurantById } = require("../services/restaurants.service");
-const MongoDB = require("../services/mongodb.services");
 var router = express.Router();
 
 router.get("/", async (req, res) => {
