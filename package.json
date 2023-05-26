@@ -20,7 +20,7 @@
   },
   "projectConfig": {
     "mongoConnectionUrl": "mongodb+srv://idankzm:idankzm2468@cluster0.purdk.mongodb.net/FoodDelivery?retryWrites=true&w=majority",
-    "serverIp": "192.168.1.190",
+    "serverIp": "http://192.168.1.190",
     "serverPort": 3000
   }
 }
