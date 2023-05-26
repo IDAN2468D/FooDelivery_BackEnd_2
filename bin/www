@@ -13,14 +13,15 @@ const { serverConfig } = require("../config");
  * Get port from environment and store in Express.
  */
 
-const port = process.env.PORT || 3000;
+var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-const server = http.createServer(app);
+var server = http.createServer(app);
+
 /**
  * Listen on provided port, on all network interfaces.
  */
