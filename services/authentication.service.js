@@ -113,7 +113,9 @@ const checkUserExist = async (query) => {
 }
 
 const tokenVerification = async (req, res, next) => {
-    console.log(`authentication.service | tokenVerification ${req?.originalUrl}`)
+    console.log(
+        `authentication.service | tokenVerification | ${req?.originalUrl}`
+    );
     try {
         if (
             req?.originalUrl.includes("/login") ||
@@ -122,18 +124,18 @@ const tokenVerification = async (req, res, next) => {
             req?.originalUrl.includes("/refresh-token")
         )
             return next();
-        let token = req?.headers["authorization"]
-        if (token && token.startsWith("Bearer")) {
-            token = token.slice(7, token?.length)
+        let token = req?.headers["authorization"];
+        if (token && token.startsWith("Bearer ")) {
+            token = token.slice(7, token?.length);
             jwt.verify(token, config.tokenSecret, (error, decoded) => {
                 if (error) {
                     res.status(401).json({
                         status: false,
                         message: error?.name ? error?.name : "Invalid Token",
-                        error: `Invalid Token | ${error?.message}`,
+                        error: `Invalid token | ${error?.message}`,
                     });
                 } else {
-                    req["username"] = decoded?.username
+                    req["username"] = decoded?.username;
                     next();
                 }
             });
@@ -151,7 +153,7 @@ const tokenVerification = async (req, res, next) => {
             error: `Authentication failed | ${error?.message}`,
         });
     }
-}
+};
 
 const tokenRefresh = async (req, res) => {
     console.log(`authentication.service | tokenVerification ${req?.originalUrl}`)

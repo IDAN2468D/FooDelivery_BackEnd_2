@@ -121,25 +121,3 @@ const getCartItems = async ({ username }) => {
 };
 
 module.exports = { addToCart, removeFromCart, getCartItems }
-
-
-// .aggregate([
-//     {
-//         $match: {
-//             username: username,
-//         },
-//     },
-//     {
-//         $lookup: {
-//             from: "foods",
-//             localField: "foodId",
-//             foreignField: "id",
-//             as: "food",
-//         },
-//     },
-//     {
-//         $unwind: {
-//             path: "$food",
-//         },
-//     },
-// ])
