@@ -125,7 +125,7 @@ const tokenVerification = async (req, res, next) => {
         )
             return next();
         let token = req?.headers["authorization"];
-        if (token && token.startsWith("Bearer ")) {
+        if (token && token.startsWith("Bearer")) {
             token = token.slice(7, token?.length);
             jwt.verify(token, config.tokenSecret, (error, decoded) => {
                 if (error) {
