@@ -32,7 +32,6 @@ const userRegister = async (user) => {
     try {
         if (!user?.username || !user?.email || !user?.password)
             return { status: false, message: "Please fill up all the fields" };
-        sendVerificationEmail(userObject.email)
         const passwordHash = await bcrypt.hash(user?.password, 10);
         let userObject = {
             username: user?.username,
