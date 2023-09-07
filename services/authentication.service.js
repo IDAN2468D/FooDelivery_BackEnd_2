@@ -3,7 +3,7 @@ const { mongoConfig, tokenSecret } = require("../config");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
-//const nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 
 
 // const sendVerificationEmail = async (email) => {
@@ -33,12 +33,12 @@ const userRegister = async (user) => {
         if (!user?.username || !user?.email || !user?.password)
             return { status: false, message: "Please fill up all the fields" };
         const passwordHash = await bcrypt.hash(user?.password, 10);
-        //sendVerificationEmail(userObject.email)
         let userObject = {
             username: user?.username,
             email: user?.email,
             password: passwordHash,
         }
+        // sendVerificationEmail(userObject?.email)
         let savedUser = await MongoDB.db
             .collection(mongoConfig.collections.USERS)
             .insertOne(userObject);
