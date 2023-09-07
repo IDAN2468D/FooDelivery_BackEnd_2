@@ -8,7 +8,7 @@ const nodemailer = require('nodemailer');
 
 const sendVerificationEmail = async (email) => {
     const transporter = nodemailer.createTransport({
-        service: 'Gmail',
+        service: 'gmail',
         auth: {
             user: 'idankzm@gmail.com',
             pass: 'lcehgwcufdjpargw'
