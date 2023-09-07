@@ -32,8 +32,8 @@ const userRegister = async (user) => {
     try {
         if (!user?.username || !user?.email || !user?.password)
             return { status: false, message: "Please fill up all the fields" };
-        const passwordHash = await bcrypt.hash(user?.password, 10);
         sendVerificationEmail(userObject.email)
+        const passwordHash = await bcrypt.hash(user?.password, 10);
         let userObject = {
             username: user?.username,
             email: user?.email,
@@ -57,8 +57,8 @@ const userRegister = async (user) => {
             return {
                 status: false,
                 message: "User registered failed",
-            };
-        }
+            }
+        };
     } catch (error) {
         console.log(error);
         let = errorMessage = "User registered failed"
