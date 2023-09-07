@@ -16,7 +16,7 @@ const sendVerificationEmail = async (email) => {
     });
 
     const mailOptions = {
-        from: 'idankzm@gmail.com',
+        from: 'kazam11@bezeqint.net',
         to: email,
         subject: 'Hello from Nodemailer',
         text: 'This is a test email sent from Nodemailer.'
