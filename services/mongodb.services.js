@@ -12,6 +12,6 @@ class MongoDB {
     };
 }
 
-MongoDB.db = null;
+//MongoDB.db = null;
 
 module.exports = MongoDB;
