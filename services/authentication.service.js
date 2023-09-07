@@ -207,5 +207,4 @@ const tokenRefresh = async (req, res) => {
 
     }
 }
-
 module.exports = { userRegister, userLogin, checkUserExist, tokenVerification, tokenRefresh }
