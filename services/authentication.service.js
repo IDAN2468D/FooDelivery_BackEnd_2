@@ -15,7 +15,7 @@ const userRegister = async (user) => {
             username: user?.username,
             email: user?.email,
             password: passwordHash,
-        }
+        };
         let savedUser = await MongoDB.db
             .collection(mongoConfig.collections.USERS)
             .insertOne(userObject);
@@ -38,7 +38,7 @@ const userRegister = async (user) => {
         }
     } catch (error) {
         console.log(error);
-        let = errorMessage = "User registered failed"
+        let errorMessage = "User registered failed";
         error?.code === 11000 && error?.keyPattern?.username
             ? (errorMessage = "Username already exist")
             : null;
