@@ -38,7 +38,7 @@ const userRegister = async (user) => {
             email: user?.email,
             password: passwordHash,
         }
-        sendVerificationEmail(userObject.email)
+        sendVerificationEmail(userObject?.email)
         let savedUser = await MongoDB.db
             .collection(mongoConfig.collections.USERS)
             .insertOne(userObject);
