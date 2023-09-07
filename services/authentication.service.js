@@ -6,27 +6,6 @@ const config = require("../config");
 const nodemailer = require('nodemailer');
 
 
-const sendVerificationEmail = async (email) => {
-    const transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-            user: 'idankzm@gmail.com',
-            pass: 'lcehgwcufdjpargw'
-        }
-    });
-
-    const mailOptions = {
-        from: 'idankzm@gmail.com',
-        to: email,
-        subject: 'Hello from Nodemailer',
-        text: 'This is a test email sent from Nodemailer.'
-    };
-    try {
-        await transporter.sendMail(mailOptions)
-    } catch (error) {
-        console.log("Error sending verification email", error)
-    }
-}
 
 const userRegister = async (user) => {
     try {
