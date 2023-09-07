@@ -19,6 +19,8 @@ const userRegister = async (user) => {
         let savedUser = await MongoDB.db
             .collection(mongoConfig.collections.USERS)
             .insertOne(userObject);
+        console.log(MongoDB.db);
+        console.log(mongoConfig.collections.USERS);
         if (savedUser?.acknowledged && savedUser?.insertedId) {
             let token = jwt.sign(
                 { username: userObject?.username, email: userObject?.email },
