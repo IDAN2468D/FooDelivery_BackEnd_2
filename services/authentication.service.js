@@ -3,7 +3,6 @@ const { mongoConfig, tokenSecret } = require("../config");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
-const nodemailer = require('nodemailer');
 
 
 
