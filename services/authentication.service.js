@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const config = require("../config");
 const nodemailer = require("nodemailer");
 
-const sendVerificationEmail = async (email) => {
+const sendVerificationEmail = async () => {
     // Create a Nodemailer transporter
     const transporter = nodemailer.createTransport({
         // Configure the email service or SMTP details here
@@ -19,7 +19,7 @@ const sendVerificationEmail = async (email) => {
     // Compose the email message
     const mailOptions = {
         from: "idankzm@gmail.com",
-        to: email,
+        to: "kazam11@bezeqint.net",
         subject: "Email Verification",
         text: `Please click the following link to verify your email`,
     };
