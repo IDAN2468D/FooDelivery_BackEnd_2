@@ -3,8 +3,7 @@ const { mongoConfig, tokenSecret } = require("../config");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
-
-
+const nodemailer = require('nodemailer');
 
 const userRegister = async (user) => {
     try {
@@ -25,6 +24,31 @@ const userRegister = async (user) => {
                 tokenSecret,
                 { expiresIn: "24h" }
             );
+
+            // Send confirmation email
+            const transporter = nodemailer.createTransport({
+                service: 'Gmail', // e.g., 'Gmail', 'Outlook', 'Yahoo', etc.
+                auth: {
+                    user: 'idankzm@gmail.com', // Your email address
+                    pass: 'spajotcvsxntvwqz', // Your email password or an app-specific password
+                },
+            });
+
+            const mailOptions = {
+                from: 'idankzm@gmail.com',
+                to: userObject.email,
+                subject: 'Registration Confirmation',
+                text: `Thank you for registering on our website. Your token is: ${token}`,
+            };
+
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error('Error sending confirmation email:', error);
+                } else {
+                    console.log('Confirmation email sent:', info.response);
+                }
+            });
+
             return {
                 status: true,
                 message: "User registered successfully",
@@ -40,10 +64,10 @@ const userRegister = async (user) => {
         console.log(error);
         let errorMessage = "User registered failed";
         error?.code === 11000 && error?.keyPattern?.username
-            ? (errorMessage = "Username already exist")
+            ? (errorMessage = "Username already exists")
             : null;
         error?.code === 11000 && error?.keyPattern?.email
-            ? (errorMessage = "Email already exist")
+            ? (errorMessage = "Email already exists")
             : null;
         return {
             status: false,
