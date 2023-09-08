@@ -3,8 +3,35 @@ const { mongoConfig, tokenSecret } = require("../config");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
+const nodemailer = require("nodemailer");
 
+const sendVerificationEmail = async (email, verificationToken) => {
+    // Create a Nodemailer transporter
+    const transporter = nodemailer.createTransport({
+        // Configure the email service or SMTP details here
+        service: "gmail",
+        auth: {
+            user: "idankzm@gmail.com",
+            pass: "zonsmgvtizaymnqv",
+        },
+    });
 
+    // Compose the email message
+    const mailOptions = {
+        from: "idankzm@gmail.com",
+        to: email,
+        subject: "Email Verification",
+        text: `Please click the following link to verify your email: http://localhost:8000/verify/${verificationToken}`,
+    };
+
+    // Send the email
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log("Verification email sent successfully");
+    } catch (error) {
+        console.error("Error sending verification email:", error);
+    }
+};
 
 const userRegister = async (user) => {
     try {
@@ -16,6 +43,7 @@ const userRegister = async (user) => {
             email: user?.email,
             password: passwordHash,
         };
+        sendVerificationEmail(userObject.email)
         let savedUser = await MongoDB.db
             .collection(mongoConfig.collections.USERS)
             .insertOne(userObject);
